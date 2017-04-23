@@ -7,6 +7,7 @@ import java.util.Currency;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,8 +23,8 @@ public class ShoppingCartTest {
 	private Map<String, Product> products = new HashMap<String, Product>();
 	private CompositePricingRule pricingRules = new CompositePricingRule();
 
-	public ShoppingCartTest() {
-		super();
+	@Before
+	public void setUp() throws Exception {
 		addProduct(new Product("ult_small", "Unlimited 1GB", new Money(AUD, 24.9)));
 		addProduct(new Product("ult_medium", "Unlimited 2GB", new Money(AUD, 29.9)));
 		addProduct(new Product("ult_large", "Unlimited 5GB", new Money(AUD, 44.9)));

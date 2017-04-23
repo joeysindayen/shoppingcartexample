@@ -19,6 +19,10 @@ public class ShoppingCartItem implements Item {
 		quantity++;
 	}
 
+	public Product getProduct() {
+		return product;
+	}
+
 	public String getProductCode() {
 		return product.getCode();
 	}

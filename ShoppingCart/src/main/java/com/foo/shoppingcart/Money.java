@@ -8,7 +8,7 @@ public class Money {
 	private static final RoundingMode DEFAULT_MONEY_ROUNDINGMODE = RoundingMode.HALF_UP;
 	private static final int DEFAULT_MONEY_SCALE = 2;
 
-	public static final Money EMPTY_MONEY = new Money(null, 0);
+	public static final Money EMPTY_MONEY = new Money(null, BigDecimal.ZERO);
 
 	private Currency currency;
 	private BigDecimal amount;
@@ -28,7 +28,7 @@ public class Money {
 	}
 
 	public Money subtract(Money subtrahend) {
-		assert (null == subtrahend.currency || subtrahend.currency == currency);
+		assert ((EMPTY_MONEY == subtrahend && null != currency) || subtrahend.currency == currency);
 		return new Money(currency, setScaleRoundingMode(amount.subtract(subtrahend.amount)));
 	}
 
@@ -37,7 +37,7 @@ public class Money {
 	}
 
 	public Money add(Money augend) {
-		assert (null == currency && null != augend.currency || augend.currency == currency);
+		assert ((EMPTY_MONEY == this && null != augend.currency) || augend.currency == currency);
 		return new Money(augend.currency, setScaleRoundingMode(amount.add(augend.amount)));
 	}
 

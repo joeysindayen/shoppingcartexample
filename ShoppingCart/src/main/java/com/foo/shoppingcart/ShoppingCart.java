@@ -21,7 +21,7 @@ public class ShoppingCart implements Item {
 	}
 
 	public void add(Product product) {
-		insert(product);
+		insert(items, product);
 		processedItems.clear();
 	}
 
@@ -75,7 +75,7 @@ public class ShoppingCart implements Item {
 		}
 	}
 
-	private void insert(Product product) {
+	private void insert(Map<String, ShoppingCartItem> items, Product product) {
 		if (items.containsKey(product.getCode())) {
 			ShoppingCartItem item = items.get(product.getCode());
 			item.increment();
@@ -86,7 +86,12 @@ public class ShoppingCart implements Item {
 
 	private void applyPricingRule() {
 		if (processedItems.isEmpty()) {
-			processedItems.putAll(items);
+			Collection<ShoppingCartItem> values = items.values();
+			for (ShoppingCartItem item : values) {
+				for (int i = item.getQuantity(); i > 0; i--) {
+					insert(processedItems, item.getProduct());
+				}
+			}
 			pricingRule.apply(this);
 		}
 	}
