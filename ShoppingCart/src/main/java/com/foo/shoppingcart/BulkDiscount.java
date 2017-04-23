@@ -27,6 +27,6 @@ public class BulkDiscount implements PricingRule {
 
 	@Override
 	public String toString() {
-		return String.format("Drop to %s on more than %d on %s", priceDrop, moreThanQuantity, product.getName());
+		return String.format("Drop to %s on more than %d on \"%s\"", priceDrop, moreThanQuantity, product.getName());
 	}
 }

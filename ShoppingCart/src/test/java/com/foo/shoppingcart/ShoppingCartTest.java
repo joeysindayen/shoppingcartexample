@@ -17,8 +17,7 @@ public class ShoppingCartTest {
 
 	private static final Currency AUD = Currency.getInstance("AUD");
 
-	private static final Money NULL_PRICE = new Money(AUD, 0);
-	private static final Product NULL_PRODUCT = new Product("", "", NULL_PRICE);
+	private static final Product NULL_PRODUCT = new Product("", "", Money.EMPTY_MONEY);
 
 	private Map<String, Product> products = new HashMap<String, Product>();
 	private CompositePricingRule pricingRules = new CompositePricingRule();

@@ -26,6 +26,6 @@ public class DealDiscount implements PricingRule {
 
 	@Override
 	public String toString() {
-		return String.format("%d of %d deal on %s", quantity, discountQuantity, product);
+		return String.format("%d of %d deal on \"%s\"", quantity, discountQuantity, product.getName());
 	}
 }
